@@ -1,17 +1,71 @@
-# Core server dependencies
-fastapi==0.104.1
-uvicorn==0.24.0
-pymongo==4.6.0
-python-dotenv==1.0.0
-pydantic==2.5.0
-requests==2.31.0
+# Core Server Dependencies
+fastapi==0.116.1
+uvicorn==0.35.0
+pymongo==4.13.2
+python-dotenv==1.1.1
+requests==2.32.3
 
-# LangChain dependencies for core logic
-langchain-core==0.1.16
-langchain-openai==0.0.5
-langchain-community==0.0.13
-langgraph==0.0.20
+# Pydantic and its dependencies
+pydantic==2.11.7
+pydantic_core==2.33.2
+annotated-types==0.7.0
+typing_extensions==4.12.2
 
-# Redis for chat history
-# Note: Using <5.0 to maintain compatibility and avoid connection errors.
+# LangChain Dependencies
+langchain==0.3.26
+langchain-community==0.3.27
+langchain-core==0.3.69
+langchain-openai==0.3.28
+langchain-text-splitters==0.3.8
+langgraph==0.5.3
+openai==1.97.0
+PyYAML==6.0.2
+SQLAlchemy==2.0.41
+tenacity==9.1.2
+tiktoken==0.9.0
+
+# Redis for Chat History (Pinned to <5.0 for compatibility)
 redis<5.0
+
+# Transitive dependencies (required by the packages above)
+aiohappyeyeballs==2.6.1
+aiohttp==3.12.14
+aiosignal==1.4.0
+anyio==4.8.0
+async-lru==2.0.4
+attrs==24.3.0
+certifi==2024.12.14
+charset-normalizer==3.4.1
+dataclasses-json==0.6.7
+dnspython==2.7.0
+frozenlist==1.7.0
+greenlet==3.2.3
+h11==0.14.0
+httpcore==1.0.7
+idna==3.10
+isoduration==20.11.0
+jiter==0.10.0
+jsonpatch==1.33
+jsonpointer==3.0.0
+jsonschema==4.23.0
+jsonschema-specifications==2024.10.1
+langsmith==0.4.6
+marshmallow==3.26.1
+multidict==6.6.3
+mypy_extensions==1.1.0
+orjson==3.11.0
+ormsgpack==1.10.0
+packaging==24.2
+python-dateutil==2.9.0.post0
+referencing==0.35.1
+regex==2024.11.6
+rfc3339-validator==0.1.4
+rfc3986-validator==0.1.1
+rpds-py==0.22.3
+six==1.17.0
+sniffio==1.3.1
+sortedcontainers==2.4.0
+starlette==0.47.1
+uri-template==1.3.0
+urllib3==2.3.0
+yarl==1.20.1
