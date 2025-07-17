@@ -1,0 +1,26 @@
+# Python specific
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+.venv/
+
+# Test specific
+.pytest_cache/
+htmlcov/
+
+# Environment files
+.env
+
+# Git and Docker specific
+.git
+.gitignore
+Dockerfile
+
+# Editor and OS specific
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
