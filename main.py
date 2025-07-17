@@ -2,8 +2,9 @@ import os
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from chatbot import get_conversational_chain
+from chatbot import get_agent_with_history
 from dotenv import load_dotenv
+from langchain_core.messages import HumanMessage, AIMessage
 
 # Load environment variables
 load_dotenv()
@@ -21,7 +22,7 @@ app.add_middleware(
 
 REDIS_URL = os.getenv("REDIS_URL")
 if not REDIS_URL:
-    # This ensures the app won't start without a valid Redis URL, satisfying the type checker.
+    # This ensures the app won't start without a valid Redis URL
     raise ValueError("REDIS_URL environment variable not set")
 
 print(f"Using Redis URL: {REDIS_URL}")
@@ -35,20 +36,21 @@ class ChatRequest(BaseModel):
 
 @app.post("/chat")
 async def chat_endpoint(request: ChatRequest):
-    """
-    Receives a message and session_id, creates a chain with persistent memory,
-    and returns the chatbot's response.
-    """
     if not request.session_id:
         raise HTTPException(status_code=400, detail="session_id is required")
 
-    chain_with_history = get_conversational_chain(
-        session_id=request.session_id, redis_url=REDIS_URL  # type: ignore
-    )
+    if not REDIS_URL:
+        raise HTTPException(status_code=500, detail="Redis URL not configured")
 
-    response = chain_with_history.invoke(
-        {"input": request.message},
-        config={"configurable": {"session_id": request.session_id}},
-    )
+    agent = get_agent_with_history(session_id=request.session_id, redis_url=REDIS_URL)
 
-    return {"response": response}
+    # Call the agent with the user's message
+    response_message = agent(request.message)
+
+    # Extract the content from the response message
+    if isinstance(response_message, AIMessage):
+        response_content = response_message.content
+    else:
+        response_content = str(response_message)
+
+    return {"response": response_content}
