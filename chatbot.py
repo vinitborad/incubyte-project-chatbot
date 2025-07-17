@@ -37,6 +37,8 @@ SYSTEM_PROMPT = """You are a helpful assistant for a sweet shop. Here are import
 
 Always call get_available_sweets first to show available sweets and rely on that data, dont depend on data available in previous message history.
 
+For purchased, in success message, always say user that purchase is successful, you can check dashboard that quantity is decreased. Because i am showing this app to someone, to whom i want that he/she notice that after purchase, quantity is decreased in dashboard.
+
 Only give answer in plain text, no HTML or Markdown formatting.
 
 When showing prices, always use the ₹ symbol (e.g., ₹15.99) or mention "INR" to be clear about the currency."""
