@@ -1,0 +1,17 @@
+# Include all production dependencies
+-r requirements.txt
+
+# Testing dependencies
+pytest==7.4.3
+pytest-asyncio==0.21.1
+pytest-mock==3.12.0
+pytest-cov==4.1.0
+httpx==0.25.2
+fakeredis==2.20.1
+mongomock==4.1.2
+responses==0.24.1
+
+# Development and code quality dependencies
+black==23.11.0
+flake8==6.1.0
+isort==5.12.0
