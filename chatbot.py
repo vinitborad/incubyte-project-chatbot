@@ -1,5 +1,6 @@
 import operator
-from typing import TypedDict, Annotated, Sequence
+import os
+from typing import TypedDict, Annotated, Sequence, Optional
 from langchain_core.messages import BaseMessage, AIMessage
 from langchain_openai import ChatOpenAI
 from langchain_community.chat_message_histories import RedisChatMessageHistory
@@ -8,6 +9,10 @@ from langgraph.prebuilt import ToolNode
 from langgraph.graph import StateGraph, END
 from langchain_core.messages import HumanMessage
 from tools import buy_sweet, get_available_sweets
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 # --- 1. Define Tools and Agent State ---
 tools = [buy_sweet, get_available_sweets]
@@ -78,11 +83,14 @@ graph = workflow.compile()
 
 
 # --- 5. Add History to the Graph ---
-def get_agent_with_history(session_id: str, redis_url: str = "redis://localhost:6379"):
+def get_agent_with_history(session_id: str, redis_url: Optional[str] = None):
     """
     Create an agent with chat history using Redis.
     Returns a function that can be called with user messages.
     """
+    # Use provided redis_url or get from environment
+    if redis_url is None:
+        redis_url = os.getenv("REDIS_URL", "redis://localhost:6379")
 
     def chat_with_history(user_message: str):
         # Get chat history

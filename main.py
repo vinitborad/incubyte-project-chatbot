@@ -9,12 +9,15 @@ from langchain_core.messages import HumanMessage, AIMessage
 # Load environment variables
 load_dotenv()
 
+# Get environment variables
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:3000")
+
 app = FastAPI(title="Sweet Shop Chatbot Service")
 
 # Allow your Next.js frontend to call this API
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=[FRONTEND_URL],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

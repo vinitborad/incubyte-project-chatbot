@@ -1,9 +1,14 @@
 import requests
+import os
 from langchain_core.tools import tool
 from database import get_all_sweets
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 # Your Node.js backend API URL
-API_BASE_URL = "http://localhost:5000"
+API_BASE_URL = os.getenv("API_BASE_URL", "http://localhost:5000")
 
 
 @tool

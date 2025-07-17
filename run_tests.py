@@ -5,6 +5,10 @@ Simple test runner for the chatbot project.
 import subprocess
 import sys
 import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 
 def run_tests():
@@ -14,7 +18,9 @@ def run_tests():
 
     # Set environment variables for testing
     env = os.environ.copy()
-    env.update({"PYTHONPATH": ".", "REDIS_URL": "redis://localhost:6379"})
+    # Use Redis URL from environment or default for testing
+    test_redis_url = os.getenv("REDIS_URL", "redis://localhost:6379")
+    env.update({"PYTHONPATH": ".", "REDIS_URL": test_redis_url})
 
     try:
         # Run pytest with basic configuration
