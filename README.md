@@ -9,9 +9,7 @@
 [![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4-purple?style=for-the-badge&logo=openai&logoColor=white)](#-crafting-tools)
 [![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)](#-crafting-tools)
 
-**🎯 Checkout my craft at: [https://incubyte.vinitborad.com](https://incubyte.vinitborad.com)**
-
-### With this kata I would love to show you tech solution provided by me for at: **[www.patrikaprinters.com](https://www.patrikaprinters.com)**, **[www.hajripatrak.com](https://www.hajripatrak.com)**, **[www.apnipg.com](https://www.apnipg.com)**.
+## 🎯 Checkout my craft at: [https://incubyte.vinitborad.com](https://incubyte.vinitborad.com)
 
 </div>
 
